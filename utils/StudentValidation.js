@@ -1,7 +1,8 @@
 //import student 
 const Student = require("../entity/student")
 
-function studentValidation(Student){
+//Validate Student object
+function studentObjValidation(Student){
     for(const key in Student){
         if(Student[key] === undefined){
             return false;
@@ -10,4 +11,14 @@ function studentValidation(Student){
     return true;
 }
 
-module.exports = studentValidation
+//Validate student fields from DB (Not yet construct Student class)
+function studentValidation(body){
+    if(body.name === undefined) return false;
+    if(body.password === undefined) return false;
+    if(body.email === undefined) return false;
+    if(body.role === undefined) return false;
+
+    return true;
+}
+
+module.exports = studentValidation, studentObjValidation

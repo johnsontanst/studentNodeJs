@@ -10,6 +10,9 @@ var getAllStudents =
 var getStudentById = 
     "SELECT * FROM students WHERE _id=?;"
 
+var getStudentByEmail =
+    "SELECT * FROM students WHERE email=?;"
+
 var updateStudentById =
     "UPDATE students SET name=?, password=?, email=?, role=? WHERE _id=?;"
 
@@ -23,5 +26,6 @@ module.exports = {
     "getStudentById" : getStudentById,
     "updateStudentById" : updateStudentById,
     "deleteStudentById" : deleteStudentById,
+    "getStudentByEmail" : getStudentByEmail,
 
 };

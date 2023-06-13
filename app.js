@@ -1,4 +1,7 @@
-//import packages
+//Import 
+const ErrorHandler = require('./utils/ErrorHandler');
+
+//Import packages
 const express = require('express');
 const app = express();
 
@@ -20,6 +23,18 @@ app.get("/", (req, res, next)=>{
         message:"Welcome!"
     });
 })
+//Handle all routes not valid and return HTTP 404
+app.all("*", (req,res,next)=>{
+    return next(new ErrorHandler("Error 404", 404));
+});
+
+//Cookie parser
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+//Middleware
+const errorMiddleware = require('./middleware/error');
+app.use(errorMiddleware);
 
 
 

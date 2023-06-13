@@ -9,7 +9,8 @@ const {
     getAllStudents,
     getStudentById,
     updateStudentById,
-    deleteStudentById
+    deleteStudentById,
+    getStudentByEmail
 } = require('./dbQueries');
 
 //Validation 
@@ -72,6 +73,15 @@ class studentRepository{
             conn.execute(deleteStudentById, [id], function(err){
                 if (err) throw err;
                 resolve(true);
+            });
+        });
+    }
+
+    static getStudentByEmail(email){
+        return new Promise((resolve, reject)=>{
+            conn.execute(getStudentByEmail, [email], function(err, data){
+                if(err) throw err;
+                resolve(data);
             });
         });
     }
